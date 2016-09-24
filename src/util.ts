@@ -54,7 +54,7 @@ export class Utils {
      * become '1 day 2 hours'
      */
     static displayDuration(minutes: number, approximate?: number) {
-        var durations = [];
+        var durations: any[] = [];
 
         var factors = [
             { label: 'month', factor: 30 * 60 * 24 },
