@@ -20,6 +20,7 @@ var util_1 = require('./util');
 var Recipe = (function (_super) {
     __extends(Recipe, _super);
     function Recipe(options) {
+        _super.call(this, options);
         this.fermentables = [];
         this.spices = [];
         this.yeast = [];
@@ -29,7 +30,6 @@ var Recipe = (function (_super) {
             yeast: yeast_1.Yeast,
             mash: mash_1.Mash
         };
-        _super.call(this, options);
     }
     /** Export a recipe to JSON, which stores all values which are not
      * easily computed via Recipe.prototype.calculate(). This method
@@ -209,7 +209,7 @@ var Recipe = (function (_super) {
                 };
                 // Do all items have a name?
                 for (var i = 0; i < ingredients.length; i++) {
-                    if (!ingredients.filter(filterFunc).length) {
+                    if (!filterFunc(ingredients[i])) {
                         grade += 0.5;
                     }
                 }
@@ -290,7 +290,7 @@ var Recipe = (function (_super) {
         // attenuation from yeast.
         this.fg = this.og - ((this.og - 1.0) * attenuation / 100.0);
         // Update alcohol by volume based on original and final gravity
-        this.abv = ((1.05 * (this.og - this.fg)) / this.fg) / 0.79 * 100.0;
+        this.abv = util_1.Utils.calculateAbv(this.og, this.fg);
         // Gravity degrees plato approximations
         this.ogPlato = (-463.37) + (668.72 * this.og) - (205.35 * (this.og * this.og));
         this.fgPlato = (-463.37) + (668.72 * this.fg) - (205.35 * (this.fg * this.fg));

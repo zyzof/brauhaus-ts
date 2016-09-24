@@ -178,6 +178,9 @@ var Utils = (function () {
         var kj = 4.19 * liters * degrees;
         return (kj / globals_1.Globals.BURNER_ENERGY) * 60;
     };
+    Utils.calculateAbv = function (og, fg) {
+        return ((1.05 * (og - fg)) / fg) / 0.79 * 100.0;
+    };
     return Utils;
 })();
 exports.Utils = Utils;

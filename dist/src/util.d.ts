@@ -68,4 +68,5 @@ export declare class Utils {
      * kilojoules per hour. It defaults to an average stovetop burner.
      */
     static timeToHeat(liters: number, degrees?: number): number;
+    static calculateAbv(og: number, fg: number): number;
 }
