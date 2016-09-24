@@ -311,7 +311,7 @@ export class Recipe extends OptionConstructor {
 
                 // Do all items have a name?
                 for (let i = 0; i < ingredients.length; i++) {
-                    if (!ingredients.filter(filterFunc).length) {
+                    if (!filterFunc(ingredients[i])) {
                         grade += 0.5;
                     }
                 }    
