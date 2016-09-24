@@ -226,4 +226,8 @@ export class Utils {
         var kj = 4.19 * liters * degrees;
         return (kj / Globals.BURNER_ENERGY) * 60;
     }
+
+    static calculateAbv(og: number, fg: number) {
+        return ((1.05 * (og - fg)) / fg) / 0.79 * 100.0;
+    }
 }

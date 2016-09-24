@@ -411,7 +411,7 @@ export class Recipe extends OptionConstructor {
         this.fg = this.og - ((this.og - 1.0) * attenuation / 100.0);
 
         // Update alcohol by volume based on original and final gravity
-        this.abv = ((1.05 * (this.og - this.fg)) / this.fg) / 0.79 * 100.0;
+        this.abv = Utils.calculateAbv(this.og, this.fg);
 
         // Gravity degrees plato approximations
         this.ogPlato = (-463.37) + (668.72 * this.og) - (205.35 * (this.og * this.og));
