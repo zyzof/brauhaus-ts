@@ -1,3 +1,4 @@
+"use strict";
 var globals_1 = require('./globals');
 exports.Globals = globals_1.Globals;
 var util_1 = require('./util');

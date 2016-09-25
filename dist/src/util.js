@@ -1,3 +1,4 @@
+"use strict";
 var globals_1 = require('./globals');
 var Utils = (function () {
     function Utils() {
@@ -182,6 +183,6 @@ var Utils = (function () {
         return ((1.05 * (og - fg)) / fg) / 0.79 * 100.0;
     };
     return Utils;
-})();
+}());
 exports.Utils = Utils;
 //# sourceMappingURL=util.js.map

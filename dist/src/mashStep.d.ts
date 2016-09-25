@@ -68,7 +68,7 @@ export declare class MashStep extends OptionConstructor {
      * If siUnits is true, then use SI units (liters and kilograms), otherwise
      * use quarts per pound when describing the liquid amounts.
      */
-    description(siUnits?: boolean, totalGrainWeight: number): string;
+    description(siUnits: boolean, totalGrainWeight: number): string;
     /** Water ratio in quarts / pound of grain */
     waterRatioQtPerLb(): number;
     /** Step temperature in degrees F */

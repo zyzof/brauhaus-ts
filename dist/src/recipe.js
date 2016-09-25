@@ -562,6 +562,6 @@ var Recipe = (function (_super) {
         return timeline;
     };
     return Recipe;
-})(base_1.OptionConstructor);
+}(base_1.OptionConstructor));
 exports.Recipe = Recipe;
 //# sourceMappingURL=recipe.js.map

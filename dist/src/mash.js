@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -41,6 +42,6 @@ var Mash = (function (_super) {
         return this.steps.push(new mashStep_1.MashStep(options));
     };
     return Mash;
-})(base_1.OptionConstructor);
+}(base_1.OptionConstructor));
 exports.Mash = Mash;
 //# sourceMappingURL=mash.js.map

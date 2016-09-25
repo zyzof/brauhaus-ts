@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -13,7 +14,7 @@ var IIngredient = (function () {
     function IIngredient() {
     }
     return IIngredient;
-})();
+}());
 exports.IIngredient = IIngredient;
 /**
  * Base class for new recipe ingredients. Each ingredient gets a name,
@@ -59,6 +60,6 @@ var Ingredient = (function (_super) {
         return null;
     };
     return Ingredient;
-})(base_1.OptionConstructor);
+}(base_1.OptionConstructor));
 exports.Ingredient = Ingredient;
 //# sourceMappingURL=ingredient.js.map
