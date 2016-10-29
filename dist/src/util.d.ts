@@ -68,5 +68,9 @@ export declare class Utils {
      * kilojoules per hour. It defaults to an average stovetop burner.
      */
     static timeToHeat(liters: number, degrees?: number): number;
-    static calculateAbv(og: number, fg: number): number;
+    static calcAbv(og: number, fg: number): number;
+    static calcStrikeTemp(volume: number, grainWeight: number, grainTemp: number, targetTemp: number): number;
+    static calcBoilingWaterMashInfusion(volume: number, grainWeight: number, initialTemp: number, targetTemp: number): number;
+    static calcTempAdjustedGravity(gravity: number, temp: number, calibrationTemp?: number): number;
+    private static getGravityRatio(temp);
 }

@@ -291,7 +291,7 @@ var Recipe = (function (_super) {
         // attenuation from yeast.
         this.fg = this.og - ((this.og - 1.0) * attenuation / 100.0);
         // Update alcohol by volume based on original and final gravity
-        this.abv = util_1.Utils.calculateAbv(this.og, this.fg);
+        this.abv = util_1.Utils.calcAbv(this.og, this.fg);
         // Gravity degrees plato approximations
         this.ogPlato = (-463.37) + (668.72 * this.og) - (205.35 * (this.og * this.og));
         this.fgPlato = (-463.37) + (668.72 * this.fg) - (205.35 * (this.fg * this.fg));

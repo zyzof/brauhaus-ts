@@ -227,7 +227,46 @@ export class Utils {
         return (kj / Globals.BURNER_ENERGY) * 60;
     }
 
-    static calculateAbv(og: number, fg: number) {
+    static calcAbv(og: number, fg: number) {
         return ((1.05 * (og - fg)) / fg) / 0.79 * 100.0;
     }
+
+    static calcStrikeTemp(volume: number, grainWeight: number,
+            grainTemp: number, targetTemp: number)
+    {
+        let waterToGrainRatio = volume / grainWeight;
+        return (0.4184 / waterToGrainRatio) * (targetTemp - grainTemp) + targetTemp;
+    }
+
+    static calcBoilingWaterMashInfusion(volume: number, grainWeight: number,
+            initialTemp: number, targetTemp: number): number
+    {
+        let volumeOfBoilingWater = (targetTemp - initialTemp) *
+            ((0.41 * grainWeight) + volume) / 
+            (100.0 - targetTemp);
+
+        return volumeOfBoilingWater;
+    }
+
+    // Adapted from Heffewizeass' post on http://www.homebrewtalk.com/showthread.php?t=10684&page=3
+    static calcTempAdjustedGravity(gravity: number, temp: number, calibrationTemp = 20): number
+    {
+        let tempF = this.cToF(temp);
+        let calibrationTempF = this.cToF(calibrationTemp);
+
+        let gravityCorrection = this.getGravityRatio(tempF);
+        let calibrationCorrection = this.getGravityRatio(calibrationTempF);
+
+        let correctedGravity = gravity * (gravityCorrection / calibrationCorrection);
+
+        return correctedGravity;
+    }
+
+    private static getGravityRatio(temp: number) {
+        return 1.00130346
+                - 0.000134722124 * temp
+                + 0.00000204052596 * (temp ** 2)
+                - 2.32820948e-09 * (temp ** 3);
+    }
+
 }

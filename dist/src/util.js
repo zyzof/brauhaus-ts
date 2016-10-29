@@ -179,8 +179,45 @@ var Utils = (function () {
         var kj = 4.19 * liters * degrees;
         return (kj / globals_1.Globals.BURNER_ENERGY) * 60;
     };
-    Utils.calculateAbv = function (og, fg) {
+    Utils.calcAbv = function (og, fg) {
         return ((1.05 * (og - fg)) / fg) / 0.79 * 100.0;
+    };
+    Utils.calcStrikeTemp = function (volume, grainWeight, grainTemp, targetTemp) {
+        var waterToGrainRatio = volume / grainWeight;
+        return (0.4184 / waterToGrainRatio) * (targetTemp - grainTemp) + targetTemp;
+    };
+    Utils.calcBoilingWaterMashInfusion = function (volume, grainWeight, initialTemp, targetTemp) {
+        var volumeOfBoilingWater = (targetTemp - initialTemp) *
+            ((0.41 * grainWeight) + volume) /
+            (100.0 - targetTemp);
+        return volumeOfBoilingWater;
+    };
+    Utils.calcTempAdjustedGravity = function (gravity, temp, calibrationTemp) {
+        // TODO: this doesn't seem to give the correct output
+        /*let tempFarenheit = this.cToF(temperature);
+        let correction = 1.313454 -
+                (0.132674 * tempFarenheit) +
+                (2.057793e-3 * (tempFarenheit ** 2)) -
+                (2.627634e-6 * (tempFarenheit ** 3));
+
+        return correction + (gravity * 0.001);*/
+        if (calibrationTemp === void 0) { calibrationTemp = 20; }
+        var tempF = this.cToF(temp);
+        var calibrationTempF = this.cToF(calibrationTemp);
+        var gravityCorrection = this.getGravityRatio(tempF);
+        console.log('gravityCorrection: ' + gravityCorrection);
+        var calibrationCorrection = this.getGravityRatio(calibrationTempF);
+        console.log('calibrationCorrection: ' + gravityCorrection);
+        var correctedGravity = gravity * (gravityCorrection / calibrationCorrection);
+        console.log('correction value: ' + correctedGravity);
+        //CG = C + (SG * 0.001)
+        return correctedGravity;
+    };
+    Utils.getGravityRatio = function (temp) {
+        return 1.00130346
+            - 0.000134722124 * temp
+            + 0.00000204052596 * (Math.pow(temp, 2))
+            - 2.32820948e-09 * (Math.pow(temp, 3));
     };
     return Utils;
 }());
