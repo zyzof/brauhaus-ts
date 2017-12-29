@@ -9,7 +9,7 @@ var fermentable_1 = require('./fermentable');
 var yeast_1 = require('./yeast');
 var spice_1 = require('./spice');
 var mash_1 = require('./mash');
-var mashstep_1 = require('./mashstep');
+var mashStep_1 = require('./mashStep');
 var globals_1 = require('./globals');
 var util_1 = require('./util');
 /**
@@ -392,9 +392,9 @@ var Recipe = (function (_super) {
             timeline.push([totalTime, ("Begin " + mash.name + " mash. Add " + ingredients.join(', ') + ".")]);
             var steps = this.mash.steps || [
                 // Default to a basic 60 minute single-infustion mash at 68C
-                new mashstep_1.MashStep({
+                new mashStep_1.MashStep({
                     name: 'Saccharification',
-                    type: mashstep_1.MashStepType.Infusion,
+                    type: mashStep_1.MashStepType.Infusion,
                     time: 60,
                     rampTime: util_1.Utils.timeToHeat(this.grainWeight(), 68 - currentTemp),
                     temp: 68,

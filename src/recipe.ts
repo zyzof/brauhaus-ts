@@ -5,7 +5,7 @@ import {Fermentable} from './fermentable';
 import {Yeast} from './yeast';
 import {Spice} from './spice';
 import {Mash} from './mash';
-import {MashStep, MashStepType} from './mashstep';
+import {MashStep, MashStepType} from './mashStep';
 import {Globals} from './globals';
 import {Utils} from './util';
 

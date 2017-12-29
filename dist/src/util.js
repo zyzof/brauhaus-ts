@@ -192,25 +192,14 @@ var Utils = (function () {
             (100.0 - targetTemp);
         return volumeOfBoilingWater;
     };
+    // Adapted from Heffewizeass' post on http://www.homebrewtalk.com/showthread.php?t=10684&page=3
     Utils.calcTempAdjustedGravity = function (gravity, temp, calibrationTemp) {
-        // TODO: this doesn't seem to give the correct output
-        /*let tempFarenheit = this.cToF(temperature);
-        let correction = 1.313454 -
-                (0.132674 * tempFarenheit) +
-                (2.057793e-3 * (tempFarenheit ** 2)) -
-                (2.627634e-6 * (tempFarenheit ** 3));
-
-        return correction + (gravity * 0.001);*/
         if (calibrationTemp === void 0) { calibrationTemp = 20; }
         var tempF = this.cToF(temp);
         var calibrationTempF = this.cToF(calibrationTemp);
         var gravityCorrection = this.getGravityRatio(tempF);
-        console.log('gravityCorrection: ' + gravityCorrection);
         var calibrationCorrection = this.getGravityRatio(calibrationTempF);
-        console.log('calibrationCorrection: ' + gravityCorrection);
         var correctedGravity = gravity * (gravityCorrection / calibrationCorrection);
-        console.log('correction value: ' + correctedGravity);
-        //CG = C + (SG * 0.001)
         return correctedGravity;
     };
     Utils.getGravityRatio = function (temp) {
